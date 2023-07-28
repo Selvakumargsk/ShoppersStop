@@ -1,13 +1,11 @@
 import React from "react";
-import { MDBFooter, MDBContainer, MDBBtn } from "mdb-react-ui-kit";
+import { MDBFooter, MDBContainer } from "mdb-react-ui-kit";
 import { Button } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
 
-export default function Footer() {
-  const navigate = useNavigate();
+export default function Footer(props) {
   const navToRegister = () => {
-    navigate("/Register");
-  };
+    props.setSignup(true)
+    };
   return (
     <MDBFooter
       className="text-center text-white"

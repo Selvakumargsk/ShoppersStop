@@ -4,11 +4,8 @@ import {
   Form,
   FormControl,
   FormGroup,
-  Navbar,
-  NavbarBrand,
 } from "react-bootstrap";
 import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
-import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -19,29 +16,28 @@ const schema = yup.object({
   password: yup.string().min(4).required(),
 });
 
-function Login() {
+function Login(props) {
   const LoginData = JSON.parse(sessionStorage.getItem("LoginData"));
-  const navigate = useNavigate();
   const navtoRegister = () => {
-    navigate("/Register");
+    props.setSignup(true)
   };
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
 
   const onSubmit = (data) => {
-    // console.log(data.userName);
     console.log(LoginData);
     const res = LoginData.find(
       ({ userName, Password }) =>
-        userName == data.userName || Password == data.password
+        userName === data.userName || Password == data.password
     );
     console.log(res);
-    if (res != undefined) {
-      navigate("/");
+    if (res !== undefined) {
+      props.setLogin(false);
+      props.setButton(true);
+      props.setUser(data.userName)
     } else {
       document.getElementById("errUser").innerHTML =
         "You've entered wrong userName";
@@ -53,6 +49,7 @@ function Login() {
     <>
       <div className="Login">
         <div className="box">
+        <button className="btn-close float-end" onClick={()=>props.setLogin(false)}></button>
           <h3 style={{ color: "blue", fontFamily: "math" }}>
             Shopper's{" "}
             <span style={{ color: "salmon", fontFamily: "math" }}>Stop</span>{" "}

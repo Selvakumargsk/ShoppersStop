@@ -1,19 +1,18 @@
-import React, { createContext, useState } from "react";
-import Cart from "./Cart";
+// import React, { createContext, useState } from "react";
 
-export const CartContext = createContext();
+// export const CartContext = createContext();
 
-export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+// export const CartProvider = ({ children }) => {
+//   const [cartItems, setCartItems] = useState([]);
 
-  const addToCart = (product) => {
-    setCartItems((prevCartItems) => [...prevCartItems, product]);
-    console.log(cartItems);
-  };
+//   const addToCart = (product) => {
+//     setCartItems((prevCartItems) => [...prevCartItems, product]);
+//     console.log(cartItems);
+//   };
 
-  return (
-    <CartContext.Provider value={{ cartItems, addToCart }}>
-      {children}
-    </CartContext.Provider>
-  );
-};
+//   return (
+//     <CartContext.Provider value={{ cartItems, addToCart }}>
+//       {children}
+//     </CartContext.Provider>
+//   );
+// };

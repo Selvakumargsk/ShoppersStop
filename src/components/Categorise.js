@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
@@ -61,7 +59,6 @@ function Categorise() {
 
   return (
     <>
-      <Header />
       <div className="container d-flex flex-wrap justify-content-center">
         {categorisedData.map((product) => (
           <>
@@ -82,7 +79,6 @@ function Categorise() {
           </>
         ))}
       </div>
-      <Footer />
     </>
   );
 }

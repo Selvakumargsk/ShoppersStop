@@ -1,27 +1,25 @@
 import React, { useState } from "react";
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import {
   Button,
   Container,
   Form,
   FormControl,
   Nav,
-  Navbar,
+  Navbar,NavDropdown 
 } from "react-bootstrap";
 import { FaOpencart } from "react-icons/fa";
 import { BsCartCheckFill } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 
-function Header() {
+function Header(props) {
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const handleSearch = () => {
     navigate(`/products?search=${searchQuery}`);
   };
-  const userLogin = () => {
-    navigate("/Login");
-  };
+
 
   return (
     <>
@@ -43,9 +41,14 @@ function Header() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                 ></FormControl>
                 <FiSearch className="searchIcon" onClick={handleSearch} />
-                <Button className="btn-light" onClick={userLogin}>
+               { props.button? 
+                <NavDropdown title={props.user.toUpperCase()}>
+                  <NavDropdown.Item>{props.user} account</NavDropdown.Item>
+                  <NavDropdown.Item>Orders</NavDropdown.Item>
+                  <NavDropdown.Item onClick={()=>{const confirm=window.confirm("Do you want to logout"); if(confirm){props.setButton(false)}}}>Logout</NavDropdown.Item>
+                </NavDropdown>:<Button className="btn-light" onClick={()=>props.setLogin(true)}>
                   Login
-                </Button>
+                </Button>}
               </Form>
               <NavLink className="nav-link" to="/">
                 Home

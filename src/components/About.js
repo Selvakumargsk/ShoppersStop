@@ -1,14 +1,9 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
 import Banner from "./bannerforhome";
 
 function About() {
-  const Navigate = useNavigate();
   return (
     <>
-      <Header />
       <Banner />
       <div className="aboutUs container p-4">
         <h2>About us...</h2>
@@ -27,7 +22,6 @@ function About() {
           space and showcase it to an audience of millions
         </p>
       </div>
-      <Footer />
     </>
   );
 }

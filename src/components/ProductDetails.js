@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
+import { MyContext } from "../App";
+
 
 function ProductDetails() {
   const { productId } = useParams();
   const [product, setProduct] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const {cartObj ,updateCart}=useContext(MyContext);
 
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${productId}`)
@@ -28,7 +29,13 @@ function ProductDetails() {
     console.log(JSON.parse(sessionStorage.getItem("cartItems")));
   }
 
+  const addContext = (x) => {
+    updateCart(x);
+    console.log(cartObj);
+  };
+
   const handleAddToCart = (product, e) => {
+    addContext(product);
     e.target.className = "btn btn-warning pointer";
     e.target.innerText = "Added";
     const updatedProduct = { ...product, quantity: 1 };
@@ -55,7 +62,6 @@ function ProductDetails() {
 
   return (
     <div className="pd">
-      <Header />
       <div
         className="productDetails d-flex justify-content-center my-3 p-1 row"
         style={{ width: "100vw" }}
@@ -85,7 +91,6 @@ function ProductDetails() {
         </div>
       </div>
       {/* Add more details of the product */}
-      <Footer style={{ position: "fixed", bottom: 0 }} />
     </div>
   );
 }

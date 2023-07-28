@@ -1,10 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
 import { Button } from "react-bootstrap";
-import { MDBTable } from "mdb-react-ui-kit";
 import { MDBDataTable } from "mdbreact";
-import { useState } from "react";
 
 function Checkout() {
   const cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
@@ -40,7 +36,7 @@ function Checkout() {
       // console.log(count);
       return {
         image: (
-          <img style={{ width: "50px", height: "40px" }} src={val.image}></img>
+          <img style={{ width: "50px", height: "40px" }} src={val.image} alt={val.title}></img>
         ),
         product: val.title,
         price: val.price,
@@ -86,13 +82,11 @@ function Checkout() {
     }),
   };
   return (
-    <>
-      <Header />
+    <div className="cartPage">
       <div className="container checkout">
         <MDBDataTable striped data={data} />
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 

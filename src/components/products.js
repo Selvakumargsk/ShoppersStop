@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import Header from "./Header";
-import Footer from "./Footer";
-import { CartContext } from "./CartContext";
+// import { CartContext } from "./CartContext";
 import Scrollcomponent from "./Scrollcomponent";
+import {MyContext} from "../App"
 
 function Products() {
   const [products, setProducts] = useState(null);
   const [cartItems, setCartItems] = useState([]);
+  const {cartObj ,updateCart}=useContext(MyContext);
+  // updateCart("hi")
+  // console.log(cartObj);
+  
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
@@ -22,19 +25,24 @@ function Products() {
     }
   }, []);
 
+  const addContext = (x) => {
+    updateCart(x);
+    console.log(cartObj);
+  };
+
   const location = useLocation();
   const searchQuery = new URLSearchParams(location.search).get("search");
   const navigate = useNavigate();
-  const { addToCart } = useContext(CartContext);
+  // const { addToCart } = useContext(CartContext);
 
   const handleProductClick = (productId) => {
     navigate(`/products/${productId}`);
   };
 
+
   if (!products) {
     return (
       <>
-        <Header />
         <div
           className="d-flex  flex-column-reverse justify-content-center align-items-center"
           style={{ minHeight: "100vh" }}
@@ -42,17 +50,17 @@ function Products() {
           <div>Products Loading...</div>
           <div className="spinner-border"></div>
         </div>
-        <Footer />
       </>
     );
   }
 
   const handleAddToCart = (product, e) => {
+    addContext(product)
     e.target.className = "btn btn-warning pointer";
     e.target.innerText = "Added";
     const updatedProduct = { ...product, quantity: 1 };
     setCartItems((prevCartItems) => [...prevCartItems, updatedProduct]);
-    console.log(cartItems);
+    // console.log(cartItems);
   };
   if (cartItems !== []) {
     sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
@@ -60,7 +68,6 @@ function Products() {
 
   return (
     <>
-      <Header />
       <Scrollcomponent />
       <div className="container ">
         <h1>Product list</h1>
@@ -93,7 +100,6 @@ function Products() {
             ))}
         </div>
       </div>
-      <Footer />
     </>
   );
 }

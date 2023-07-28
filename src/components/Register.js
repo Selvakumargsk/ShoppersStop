@@ -4,7 +4,6 @@ import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   firstName: yup.string().min(3).required("Enter your FirstName"),
@@ -20,27 +19,29 @@ const schema = yup.object({
     .oneOf([yup.ref("password"), null]),
 });
 
-function Register() {
+function Register(props) {
   const LoginData = JSON.parse(sessionStorage.getItem("LoginData"));
   const {
     register,
-    watch,
     handleSubmit,
     formState: { errors },
   } = useForm({ resolver: yupResolver(schema) });
-  const navigate = useNavigate();
-  const onSubmit = (data) => {
+  const onSubmit = async(data) => {
     console.log(data, LoginData);
     const credentials = { username: data.userName, Password: data.password };
-    LoginData.push(credentials);
-    console.log(LoginData);
-    sessionStorage.setItem("LoginData", JSON.stringify(LoginData));
-    navigate("/Login");
+    const updatedLoginData = [...LoginData, credentials];
+    console.log(updatedLoginData);
+      await setInterval(()=>{
+        sessionStorage.setItem("LoginData", JSON.stringify(updatedLoginData));
+      },3000) 
+    props.setSignup(false);
+    props.setLogin(true);
   };
   return (
     <>
       <div className="Login">
         <div className="box">
+          <button className="btn-close float-end" onClick={()=>props.setSignup(false)}></button>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <FormGroup controlId="firstName" className="row">
               <Col>

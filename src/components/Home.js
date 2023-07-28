@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Carousel } from "react-bootstrap";
 import img1 from "../carousel/pexels-fox-214659.jpg";
@@ -17,7 +17,7 @@ function Home() {
     await fetch("https://fakestoreapi.com/products")
       .then((res) => res.json())
       .then((res) => {
-        const x = res.filter((obj) => obj.category == category);
+        const x = res.filter((obj) => obj.category === category);
         sessionStorage.setItem("categoryData", JSON.stringify(x));
       });
     Navigate(`/Category/${category}`);
@@ -128,7 +128,7 @@ function Home() {
           </div>
         </div>
       </div>
-      <Carousel interval={2000} onClick={() => Navigate("/Props")}>
+      <Carousel interval={2000}>
         <Carousel.Item>
           <img className="carousel-image" src={img1} alt="img1" />
           <Carousel.Caption>

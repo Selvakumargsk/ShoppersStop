@@ -1,16 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, {  useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import { CartContext } from "./CartContext";
-import Header from "./Header";
-import Footer from "./Footer";
 import { Button } from "react-bootstrap";
 import Scrollcomponent from "./Scrollcomponent";
+import { MyContext } from "../App";
 
 function Cart() {
   // const { cartItems } = useContext(CartContext);
   let cartItems = JSON.parse(sessionStorage.getItem("cartItems"));
   const [updatedCart, setUpdatedCart] = useState(cartItems);
-  console.log(cartItems);
+  const {cartObj ,updateCart}=useContext(MyContext);
+  console.log(cartObj);
 
   const handleCartItem = (e) => {
     console.log(e.target.id);
@@ -22,8 +21,7 @@ function Cart() {
     setUpdatedCart(cartItems);
   };
   return (
-    <>
-      <Header />
+    <div className="cartPage">
       <div className="container">
         <h1>Cart</h1>
         {cartItems === null || updatedCart.length === 0 ? (
@@ -54,8 +52,7 @@ function Cart() {
           Proceed to Checkout
         </Link>
       </div>
-      <Footer />
-    </>
+    </div>
   );
 }
 
