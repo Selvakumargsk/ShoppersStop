@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/ShoppersStop/static/css/main.344eeddc.css",
-    "main.js": "/ShoppersStop/static/js/main.b67f654c.js",
+    "main.css": "/ShoppersStop/static/css/main.d273cfb7.css",
+    "main.js": "/ShoppersStop/static/js/main.736b4b59.js",
     "static/js/787.ec704a7a.chunk.js": "/ShoppersStop/static/js/787.ec704a7a.chunk.js",
     "static/media/pexels-suzy-hazelwood-1122865.jpg": "/ShoppersStop/static/media/pexels-suzy-hazelwood-1122865.e01e6f3f7d93229660e0.jpg",
     "static/media/pexels-nataliya-vaitkevich-62144761.jpg": "/ShoppersStop/static/media/pexels-nataliya-vaitkevich-62144761.079693c5d99937f53a6f.jpg",
@@ -14,12 +14,12 @@
     "static/media/pexels-borko-manigoda-1778412.jpg": "/ShoppersStop/static/media/pexels-borko-manigoda-1778412.0342c1f42152b3c200bd.jpg",
     "static/media/pexels-photo.png": "/ShoppersStop/static/media/pexels-photo.e0694f43b771ac933e15.png",
     "index.html": "/ShoppersStop/index.html",
-    "main.344eeddc.css.map": "/ShoppersStop/static/css/main.344eeddc.css.map",
-    "main.b67f654c.js.map": "/ShoppersStop/static/js/main.b67f654c.js.map",
+    "main.d273cfb7.css.map": "/ShoppersStop/static/css/main.d273cfb7.css.map",
+    "main.736b4b59.js.map": "/ShoppersStop/static/js/main.736b4b59.js.map",
     "787.ec704a7a.chunk.js.map": "/ShoppersStop/static/js/787.ec704a7a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.344eeddc.css",
-    "static/js/main.b67f654c.js"
+    "static/css/main.d273cfb7.css",
+    "static/js/main.736b4b59.js"
   ]
 }
